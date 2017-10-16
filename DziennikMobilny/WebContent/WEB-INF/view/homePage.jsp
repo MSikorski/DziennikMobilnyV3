@@ -15,7 +15,7 @@
 <br>
 <br>
 
-<a href="/logowanie">Logowanie</a>
+<a href="login/login">Logowanie</a>
 
 </body>
 </html>

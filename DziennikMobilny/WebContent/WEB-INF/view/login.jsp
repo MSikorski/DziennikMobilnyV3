@@ -12,8 +12,13 @@
 		
 		<input type="text" name="userName"
 			placeholder="Nazwa uzytkownika" />
+			
+			<br><br>
+			
+		<input type="password" name="password"
+			placeholder="Haslo" />
 	
-	
+			<br><br>
 	
 		<input type="submit" placeholder="Loguj" />
 	</form>

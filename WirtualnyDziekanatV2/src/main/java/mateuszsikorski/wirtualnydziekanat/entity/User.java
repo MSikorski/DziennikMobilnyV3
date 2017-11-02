@@ -1,14 +1,13 @@
 package mateuszsikorski.wirtualnydziekanat.entity;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,8 +31,17 @@ public class User {
 	@Column(name="telephone_number")
 	private String telephoneNumber;
 	
-	@OneToMany(mappedBy="owner", cascade = CascadeType.ALL)
-	private List<Mark> marks;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="student_detail_id")
+	private StudentDetail studentDetail;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="admin_detail_id")
+	private AdminDetail adminDetail;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="teacher_detail_id")
+	private TeacherDetail teacherDetail;
 	
 	public User() {}
 
@@ -81,13 +89,35 @@ public class User {
 		return id;
 	}
 
+	public StudentDetail getStudentDetail() {
+		return studentDetail;
+	}
+
+	public void setStudentDetail(StudentDetail studentDetail) {
+		this.studentDetail = studentDetail;
+	}
+
+	public AdminDetail getAdminDetail() {
+		return adminDetail;
+	}
+
+	public void setAdminDetail(AdminDetail adminDetail) {
+		this.adminDetail = adminDetail;
+	}
+
+	public TeacherDetail getTeacherDetail() {
+		return teacherDetail;
+	}
+
+	public void setTeacherDetail(TeacherDetail teacherDetail) {
+		this.teacherDetail = teacherDetail;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", telephoneNumber=" + telephoneNumber + "]";
+				+ ", telephoneNumber=" + telephoneNumber + ", studentDetail=" + studentDetail + ", adminDetail="
+				+ adminDetail + ", teacherDetail=" + teacherDetail + "]";
 	}
-	
-	
-	
 	
 }

@@ -4,13 +4,18 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-
+@Entity
+@Table(name="student_detail")
 public class StudentDetail {
 	
 	@Id
@@ -27,22 +32,20 @@ public class StudentDetail {
 	@OneToOne(mappedBy="studentDetail",
 			cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 					CascadeType.REFRESH})
-	private User user;
+	private UserDetail userDetail;
 	
-	@ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE, 
+	@OneToMany(mappedBy="studentDetail",
+			cascade = {CascadeType.REFRESH, CascadeType.MERGE, 
 			CascadeType.PERSIST, CascadeType.REFRESH})
 	private List <Mark> marks;
-
-	public StudentDetail(String indexNumber, User user) {
-		this.indexNumber = indexNumber;
-		this.user = user;
-	}
 	
-	public StudentDetail(String indexNumber, String specialization, User user, List<Mark> marks) {
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+					CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinColumn(name="student_group_id")
+	private StudentGroup studentGroup;
+
+	public StudentDetail(String indexNumber) {
 		this.indexNumber = indexNumber;
-		this.specialization = specialization;
-		this.user = user;
-		this.marks = marks;
 	}
 	
 	public StudentDetail() {}
@@ -63,12 +66,12 @@ public class StudentDetail {
 		this.specialization = specialization;
 	}
 
-	public User getUser() {
-		return user;
+	public UserDetail getUser() {
+		return userDetail;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(UserDetail userDetail) {
+		this.userDetail = userDetail;
 	}
 
 	public List<Mark> getMarks() {
@@ -83,10 +86,18 @@ public class StudentDetail {
 		return id;
 	}
 
+	public StudentGroup getStudentGroup() {
+		return studentGroup;
+	}
+
+	public void setStudentGroup(StudentGroup studentGroup) {
+		this.studentGroup = studentGroup;
+	}
+
 	@Override
 	public String toString() {
 		return "StudentDetail [id=" + id + ", indexNumber=" + indexNumber + ", specialization=" + specialization
-				+ ", user=" + user + ", marks=" + marks + "]";
+				+ ", user=" + userDetail + ", marks=" + marks + ", studentGroup=" + studentGroup + "]";
 	}
-	
+
 }

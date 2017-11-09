@@ -25,6 +25,6 @@ public class AdminDetail {
 	private String flags;
 	
 	@OneToOne(mappedBy="adminDetail", cascade=CascadeType.ALL)
-	private User user;
+	private UserDetail user;
 	
 }

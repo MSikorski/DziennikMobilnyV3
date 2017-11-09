@@ -1,4 +1,4 @@
-package mateuszsikorski.wirtualnydziekanat;
+package mateuszsikorski.wirtualnydziekanat.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

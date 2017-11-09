@@ -9,115 +9,78 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+
+@Component
+//@Scope("session")
 @Entity
-@Table(name="users")
+@Table(name="user")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="email")
-	private String email;
+	@NotNull(message = "Pole wymagane")
+	@Column(name="user_name")
+	private String userName;
 	
-	@Column(name="first_name")
-	private String firstName;
-	
-	@Column(name="last_name")
-	private String lastName;
-	
-	@Column(name="telephone_number")
-	private String telephoneNumber;
+	@Size(min = 6, max = 25, message = "Haslo powinno zawierac od 6 do 25 znakow")
+	@Column(name="password")
+	private String password;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="student_detail_id")
-	private StudentDetail studentDetail;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="admin_detail_id")
-	private AdminDetail adminDetail;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="teacher_detail_id")
-	private TeacherDetail teacherDetail;
-	
-	public User() {}
+	@JoinColumn(name="user_detail_id")
+	private UserDetail userDetail;
 
-	public User(String email, String firstName, String lastName, String telephoneNumber) {
-		super();
-		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.telephoneNumber = telephoneNumber;
+	public User() {
+		this.userName = "Unregistered user";
+		this.userDetail = new UserDetail(this);
 	}
 
-	public String getEmail() {
-		return email;
+	public User(String userName, String password) {
+		this.userName = userName;
+		this.password = password;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public String getUserName() {
+		return userName;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public String getPassword() {
+		return password;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public UserDetail getUserDetail() {
+		return userDetail;
 	}
 
-	public String getTelephoneNumber() {
-		return telephoneNumber;
-	}
-
-	public void setTelephoneNumber(String telephoneNumber) {
-		this.telephoneNumber = telephoneNumber;
+	public void setUserDetail(UserDetail userDetail) {
+		this.userDetail = userDetail;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public StudentDetail getStudentDetail() {
-		return studentDetail;
-	}
-
-	public void setStudentDetail(StudentDetail studentDetail) {
-		this.studentDetail = studentDetail;
-	}
-
-	public AdminDetail getAdminDetail() {
-		return adminDetail;
-	}
-
-	public void setAdminDetail(AdminDetail adminDetail) {
-		this.adminDetail = adminDetail;
-	}
-
-	public TeacherDetail getTeacherDetail() {
-		return teacherDetail;
-	}
-
-	public void setTeacherDetail(TeacherDetail teacherDetail) {
-		this.teacherDetail = teacherDetail;
-	}
-
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", telephoneNumber=" + telephoneNumber + ", studentDetail=" + studentDetail + ", adminDetail="
-				+ adminDetail + ", teacherDetail=" + teacherDetail + "]";
+		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", userDetail=" + userDetail
+				+ "]";
 	}
 	
 }

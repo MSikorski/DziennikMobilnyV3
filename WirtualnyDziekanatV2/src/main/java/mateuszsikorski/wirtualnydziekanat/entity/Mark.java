@@ -27,6 +27,11 @@ public class Mark {
 	@JoinColumn(name="teacher_detail_id")
 	private TeacherDetail teacherDetail;
 	
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+					CascadeType.REFRESH})
+	@JoinColumn(name="subject_id")
+	private Subject subject;
+	
 	@Column(name="value")
 	private String value;
 	
@@ -80,6 +85,14 @@ public class Mark {
 
 	public void setTeacherDetail(TeacherDetail teacherDetail) {
 		this.teacherDetail = teacherDetail;
+	}
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 	@Override

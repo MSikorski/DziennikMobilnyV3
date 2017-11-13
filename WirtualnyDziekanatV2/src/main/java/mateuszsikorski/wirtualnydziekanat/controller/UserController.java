@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,34 +35,61 @@ public class UserController {
 
 	
 	@GetMapping("/login")
-	public ModelAndView loginPage(){
+	public ModelAndView loginPage(@ModelAttribute("user") User user){
 		
-		Map<String, String> loginDetail;
+		ModelAndView mav = new ModelAndView();
+		Map<String, String> loginDetail = new Map<>();
+		
+		loginDetail.put("userName", "");
+		loginDetail.put("password", "");
+		
+		if(user.isRegistered()) {
+			String msg = "Uzytkownik jest juz zalogowany";
+			mav.addObject("msg", msg);
+			mav.setViewName("/actionfailed");
+		}
+		mav.addObject("loginDetail", loginDetail);
+		
 		
 		return null;
 	}
 	
 	// Rejestracja uzytkownika
 	@GetMapping("/create")
-	public ModelAndView createUser() {
+	public ModelAndView createUser(@ModelAttribute("user") User user) {
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/user/add-user-form");
 		
-		user = new User();
+		String msg;
+		
+		if(user.isRegistered()) {
+			msg = "Uzytkownik jest juz zarejestrowany";
+			mav.addObject("msg", msg);
+			mav.setViewName("/actionfailed");
+			System.out.println("/user/create Recived request from registered user: " + user);
+		} else {
+			user = new User();
+			mav.setViewName("/user/add-user-form");
+			System.out.println("/user/create Creating new user in memory: " + user);
+		}
+		
 		mav.addObject("user", user);
-		System.out.println("/user/create Creating new user: " + user);
-		
 		
 		return mav;
 	}
 	
 	// Rejestracja uzytkownika
 	@PostMapping("/save")
-	public String saveUser(@ModelAttribute("user") User user, HttpServletRequest request){
+	public String saveUser(@ModelAttribute("user") @Valid User user,
+			BindingResult bR, HttpServletRequest request){
 		
-		System.out.println("/user/save/ Saving the user: " + user);
+		if(bR.hasErrors()) {
+			System.out.println("/user/save Incorrect data recieved");
+			return "/user/add-user-form";
+		} else {		
+		System.out.println("/user/save/ Saving the user in db: " + user);
 		//userService.saveUser(user);
+		}
 		//m.addAttribute("user", user);
 		
 		return "user/user-detail-form";

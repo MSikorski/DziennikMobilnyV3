@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +28,7 @@ public class User {
 	@Column(name="id")
 	private int id;
 	
-	@NotNull(message = "Pole wymagane")
+	@Size(min = 5, max = 15, message = "Nazwa uzytkownika powinna zawierac od 5 fo 15 znakow")
 	@Column(name="user_name")
 	private String userName;
 	
@@ -38,9 +39,11 @@ public class User {
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="user_detail_id")
 	private UserDetail userDetail;
+	
+	private boolean registered;
 
 	public User() {
-		this.userName = "Unregistered user";
+		this.userName = "Niezarejestrowany";
 		this.userDetail = new UserDetail(this);
 	}
 
@@ -75,6 +78,14 @@ public class User {
 
 	public int getId() {
 		return id;
+	}
+	
+	public boolean isRegistered() {
+		return registered;
+	}
+
+	public void setRegistered(boolean registered) {
+		this.registered = registered;
 	}
 
 	@Override

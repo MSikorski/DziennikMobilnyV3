@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,15 +24,19 @@ public class UserDetail {
 	@Column(name="id")
 	private int id;
 	
+	@Email(message = "Prosze podac prawdilowy adres email")
 	@Column(name="email")
 	private String email;
 	
+	@NotEmpty(message = "Prosze podac imie")
 	@Column(name="first_name")
 	private String firstName;
 	
+	@NotEmpty(message = "Prosze podac nazwisko")
 	@Column(name="last_name")
 	private String lastName;
 	
+	//@TelephoneNumber
 	@Column(name="telephone_number")
 	private String telephoneNumber;
 	

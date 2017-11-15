@@ -1,4 +1,4 @@
-package mateuszsikorski.wirtualnydziekanat.entity;
+package org.mateuszsikorski.wirtualnydziekanat.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -18,7 +19,6 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-//@Scope("session")
 @Entity
 @Table(name="user")
 public class User {
@@ -28,20 +28,22 @@ public class User {
 	@Column(name="id")
 	private int id;
 	
-	@Size(min = 5, max = 15, message = "Nazwa uzytkownika powinna zawierac od 5 fo 15 znakow")
-	@Column(name="user_name")
+	@Size(min = 5, max = 15, message = "Nazwa uzytkownika powinna zawierac od 5 do 15 znakow")
+	@Column(name="user_name", unique = true)
 	private String userName;
 	
-	@Size(min = 6, max = 25, message = "Haslo powinno zawierac od 6 do 25 znakow")
 	@Column(name="password")
 	private String password;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade={CascadeType.REMOVE, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="user_detail_id")
 	private UserDetail userDetail;
 	
-	private boolean registered;
-
+	@Transient
+	@Size(min = 5, max = 25, message = "Haslo powinno zawierac od 5 do 25 znakow")
+	private String tempPass;
+	
 	public User() {
 		this.userName = "Niezarejestrowany";
 		this.userDetail = new UserDetail(this);
@@ -80,17 +82,17 @@ public class User {
 		return id;
 	}
 	
-	public boolean isRegistered() {
-		return registered;
+	public String getTempPass() {
+		return tempPass;
 	}
 
-	public void setRegistered(boolean registered) {
-		this.registered = registered;
+	public void setTempPass(String tempPass) {
+		this.tempPass = tempPass;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", userDetail=" + userDetail
+		return "User [id=" + id + ", userName=" + userName + ", password=" + password + /*"\nLast url: " + lastUrl + */"\nuserDetail=" + userDetail
 				+ "]";
 	}
 	

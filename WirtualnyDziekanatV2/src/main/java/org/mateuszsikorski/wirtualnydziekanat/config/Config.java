@@ -1,4 +1,4 @@
-package mateuszsikorski.wirtualnydziekanat.config;
+package org.mateuszsikorski.wirtualnydziekanat.config;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -23,7 +23,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "mateuszsikorski.wirtualnydziekanat.*")
+@ComponentScan(basePackages = "org.mateuszsikorski.wirtualnydziekanat.*")
 @EnableTransactionManagement
 public class Config extends WebMvcConfigurerAdapter{
 
@@ -73,7 +73,7 @@ public class Config extends WebMvcConfigurerAdapter{
 		properties.put("hibernate.show_sql", true);
 		
 		mySessionFactory.setDataSource(myDataSource);
-		mySessionFactory.setPackagesToScan("mateuszsikorski.wirtualnydziekanat.entity");
+		mySessionFactory.setPackagesToScan("org.mateuszsikorski.wirtualnydziekanat.entity");
 		mySessionFactory.setHibernateProperties(properties);
 		mySessionFactory.afterPropertiesSet(); // kurestwo!!!
 		

@@ -1,4 +1,4 @@
-package mateuszsikorski.wirtualnydziekanat.entity;
+package org.mateuszsikorski.wirtualnydziekanat.entity;
 
 import java.util.ArrayList;
 import java.util.Arrays;

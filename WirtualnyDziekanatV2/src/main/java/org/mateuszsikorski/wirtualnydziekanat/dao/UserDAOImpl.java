@@ -1,12 +1,11 @@
-package mateuszsikorski.wirtualnydziekanat.dao;
+package org.mateuszsikorski.wirtualnydziekanat.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.mateuszsikorski.wirtualnydziekanat.entity.User;
+import org.mateuszsikorski.wirtualnydziekanat.entity.UserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import mateuszsikorski.wirtualnydziekanat.entity.User;
-import mateuszsikorski.wirtualnydziekanat.entity.UserDetail;
 
 @Repository
 public class UserDAOImpl implements UserDAO {

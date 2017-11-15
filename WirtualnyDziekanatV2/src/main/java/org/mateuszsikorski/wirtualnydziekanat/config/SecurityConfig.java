@@ -1,4 +1,4 @@
-package mateuszsikorski.wirtualnydziekanat.config;
+package org.mateuszsikorski.wirtualnydziekanat.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

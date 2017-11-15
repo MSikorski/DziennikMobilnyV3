@@ -1,4 +1,4 @@
-package mateuszsikorski.wirtualnydziekanat.entity;
+package org.mateuszsikorski.wirtualnydziekanat.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,7 +40,8 @@ public class UserDetail {
 	@Column(name="telephone_number")
 	private String telephoneNumber;
 	
-	@OneToOne(cascade=CascadeType.ALL, mappedBy="userDetail")
+	@OneToOne(cascade={CascadeType.REMOVE, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH}, mappedBy="userDetail")
 	private User user;
 	
 	@OneToOne(cascade=CascadeType.ALL)
@@ -56,14 +57,14 @@ public class UserDetail {
 	private TeacherDetail teacherDetail;
 	
 	public UserDetail() {
-		this.email = "Email";
+		this.email = "Email@host.com";
 		this.firstName = "Imie";
 		this.lastName  = "Nazwisko";
 		this.telephoneNumber = "Numer telefonu";
 	}
 	
 	public UserDetail(User user) {
-		this.email = "Email";
+		this.email = "Email@host.com";
 		this.firstName = "Imie";
 		this.lastName  = "Nazwisko";
 		this.telephoneNumber = "Numer telefonu";

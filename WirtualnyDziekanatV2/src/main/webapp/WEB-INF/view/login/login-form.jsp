@@ -15,36 +15,28 @@
 	<div align="right">
 		<a href="/WirtualnyDziekanat/">Strona glowna </a> 
 		<a href="detail">Profil uzytkownika [${user.userName}] </a>
+		<a href="logout">Wyloguj</a>
 	</div>
 
 	<div align="center">
 
-		<h2>Rejestracja nowego uzytkownika</h2>
+		<h2>Logowanie</h2>
 
-		<form action="save" method="POST">
+		<form:form action="loginproceed" method="POST" modelAttribute="loginDetail">
 
-			<!-- need to pass id -->
-			<form:hidden path="user.id" />
+			${msg}
 
 			<table>
 				<tbody>
 
 					<tr>
 						<td><label>Nazwa uzytknownika:</label></td>
-						<td><form:input path="user.userName" /></td>
-						<td><div class="isa_error">
-								<i class="fa fa-times-circle"></i><center>
-								 <form:errors path="user.userName" /></center>
-							</div></td>
+						<td><form:input path="user" /></td>
 					</tr>
 
 					<tr>
 						<td><label>Haslo:</label></td>
-						<td><form:password path="user.tempPass" /></td>
-						<td><div class="isa_error">
-								<i class="fa fa-times-circle"></i><center>
-						<form:errors path="user.tempPass" /></center>
-						</div></td>
+						<td><form:password path="pass" /></td>
 					</tr>
 
 
@@ -55,9 +47,11 @@
 
 				</tbody>
 			</table>
+			
+			<br>
+			<a href="create">Rejestracja nowego uzytkownika</a>
 
-
-		</form>
+		</form:form>
 	</div>
 
 

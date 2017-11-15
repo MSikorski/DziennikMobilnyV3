@@ -15,36 +15,49 @@ public class LoginDAOImpl implements LoginDAO{
 	@Autowired
 	SessionFactory sessionFactory;
 	
+	User tempUser = null;
+	
 	@Override
-	public String getUserPassHash(String user) {
+	public boolean checkUser(String user) {
 
-		System.out.println("getUserPassHash called");
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		String hql = "SELECT u.password FROM user u WHERE u.userName=" + user;
+		System.out.println("checkUser called");
+		
+		String hql = "FROM User u WHERE u.userName=" + user;
+		Query query = currentSession.createQuery(hql);
+		
+		try{
+			tempUser = (User) query.getSingleResult();
+		} catch (Exception e){
+			return false;
+		}
+		return true;
+	}
+	
+	@Override
+	public String getUserPassHash(String user){
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		String hql = "SELECT u.password FROM User u WHERE u.userName=" + user;
 		System.out.println(hql);
 		Query query = currentSession.createQuery(hql);
 
-		String temp = (String) query.getSingleResult();
-
-		if(temp == null)
-			System.out.println("failed to retrieve any dbPassHash with given user="+ user);
-		else 
-			System.out.println("retrieved " + temp);
-
+		String temp = "";
+		
+		try {
+		temp = (String) query.getSingleResult();
+		} catch(Exception e){
+		}
+		
 		return temp;
 	}
 
 	@Override
 	public User getUser(String user) {
-
-		Session currentSession = sessionFactory.getCurrentSession();
-
-		String hql = "FROM user U WHERE U.user_name=" + user;
-		Query query = currentSession.createQuery(hql);
-
-		List<User> temp = query.getResultList();
 		
-		return temp.get(0);
+		return tempUser;
 	}
+	
 }

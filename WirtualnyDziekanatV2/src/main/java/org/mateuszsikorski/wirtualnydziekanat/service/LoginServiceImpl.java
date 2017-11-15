@@ -4,7 +4,9 @@ import javax.transaction.Transactional;
 
 import org.mateuszsikorski.wirtualnydziekanat.dao.LoginDAO;
 import org.mateuszsikorski.wirtualnydziekanat.dao.LoginDAOImpl;
+import org.mateuszsikorski.wirtualnydziekanat.dao.UserDAO;
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
+import org.mateuszsikorski.wirtualnydziekanat.model.LoginDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -15,27 +17,27 @@ public class LoginServiceImpl implements LoginService{
 	@Autowired
 	private LoginDAO loginDAO;
 	
-	private String user;
-	private String pass;
+	@Autowired
+	public void setLoginDAO(LoginDAO loginDAO) {
+		this.loginDAO = loginDAO;
+	}
 	
 	private User temp;
 	
-	public LoginServiceImpl(String user, String pass){
-		this.user = user; 
-		this.pass = pass;
-		temp = null;
-	}
-	
-	public LoginServiceImpl() {
-	}
-	
 	@Transactional
 	@Override
-	public boolean validate() {
-		System.out.println("Validating with loginDetail: " + user + " " + pass + "loginDAO: " + loginDAO);
-		String dbPassHash = loginDAO.getUserPassHash(user);
-		if(BCrypt.checkpw(pass, dbPassHash)){
-			temp = loginDAO.getUser(user);
+	public boolean validate(LoginDetail loginDetail) {
+		
+		System.out.println("Validating with loginDetail: " + loginDetail + " loginDAO " + loginDAO);
+		
+		String dbPassHash;
+		
+		if(loginDAO.checkUser(loginDetail.getUser())){
+			dbPassHash = loginDAO.getUserPassHash(loginDetail.getUser());
+		} else return false;
+			
+		if(BCrypt.checkpw(loginDetail.getPass(), dbPassHash)){
+			temp = loginDAO.getUser(loginDetail.getUser());
 			return true;
 		} 
 		else return false; 
@@ -44,21 +46,5 @@ public class LoginServiceImpl implements LoginService{
 	public User getUser() {
 		return temp;
 	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	@Override
-	public String toString() {
-		return "LoginDetail [user=" + user + ", pass=" + pass + "]";
-	}
+	
 }

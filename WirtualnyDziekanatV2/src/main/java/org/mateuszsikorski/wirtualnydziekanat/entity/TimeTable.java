@@ -39,8 +39,8 @@ public class TimeTable {
 		for (Subject tempSubject : subjects) {
 
 			// Time format DNR
-			// D states for day
-			// NR states for number of lesson counting from first which is at 8:00
+			// D <0,5> states for day
+			// NR <0,9> states for number of lesson counting from first which is at 8:00
 			int time = Integer.parseInt(tempSubject.getTime());
 			int hour = time % 10;
 			int day = (time - hour) / 10;
@@ -48,8 +48,15 @@ public class TimeTable {
 			subjectTime[day][hour] = tempSubject;
 		}
 	}
+	
+	public TimeTable() {
+	}
+	
+	public TimeTable(StudentGroup studentGroup) {
+		this.studentGroup = studentGroup;
+	}
 
-	public Subject[][] getTimeTable() {
+	public Subject[][] getSubjectTimeTable() {
 		processTimeTable();
 		return subjectTime;
 	}

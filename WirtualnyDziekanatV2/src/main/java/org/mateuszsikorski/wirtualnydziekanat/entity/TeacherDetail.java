@@ -38,15 +38,50 @@ public class TeacherDetail {
 	@ManyToMany(fetch=FetchType.LAZY,
 			cascade={CascadeType.PERSIST, CascadeType.MERGE,
 					CascadeType.DETACH, CascadeType.REFRESH})
-	private List<StudentGroup> teacherGroupList;
-	
-	@ManyToMany(fetch=FetchType.LAZY,
-			cascade={CascadeType.PERSIST, CascadeType.MERGE,
-					CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinTable(name = "subject_teacher", 
 				joinColumns = @JoinColumn(name = "teacher_detail_id"), 
 				inverseJoinColumns = @JoinColumn(name = "subject_id"))
 	private List<Subject> subjectsList;
+
+	public TeacherDetail(UserDetail userDetail) {
+		this.userDetail = userDetail;
+	}
 	
+	public TeacherDetail() { 
+	}
+
+	public UserDetail getUserDetail() {
+		return userDetail;
+	}
+
+	public void setUserDetail(UserDetail userDetail) {
+		this.userDetail = userDetail;
+	}
+
+	public List<Mark> getMarks() {
+		return marks;
+	}
+
+	public void setMarks(List<Mark> marks) {
+		this.marks = marks;
+	}
+
+	public List<Subject> getSubjectsList() {
+		return subjectsList;
+	}
+
+	public void setSubjectsList(List<Subject> subjectsList) {
+		this.subjectsList = subjectsList;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "TeacherDetail [id=" + id + ", userDetail=" + userDetail + ", marks=" + marks + ", subjectsList="
+				+ subjectsList + "]";
+	}
 
 }

@@ -25,6 +25,35 @@ public class AdminDetail {
 	private String flags;
 	
 	@OneToOne(mappedBy="adminDetail", cascade=CascadeType.ALL)
-	private UserDetail user;
+	private UserDetail userDetail;
+	
+	public AdminDetail(UserDetail userDetail) {
+		this.userDetail = userDetail;
+	}
+
+	public String getFlags() {
+		return flags;
+	}
+
+	public void setFlags(String flags) {
+		this.flags = flags;
+	}
+
+	public UserDetail getUserDetail() {
+		return userDetail;
+	}
+
+	public void setUser(UserDetail user) {
+		this.userDetail = user;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "AdminDetail [id=" + id + ", flags=" + flags + ", user=" + userDetail + "]";
+	}
 	
 }

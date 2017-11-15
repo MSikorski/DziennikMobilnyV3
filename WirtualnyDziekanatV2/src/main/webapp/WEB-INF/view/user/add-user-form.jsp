@@ -13,8 +13,13 @@
 <body>
 
 	<div align="right">
-		<a href="/WirtualnyDziekanat/">Strona glowna </a> 
-		<a href="detail">Profil uzytkownika [${user.userName}] </a>
+		<table>
+			<tr>
+				<td><a href="/WirtualnyDziekanat/">Strona glowna </a></td>
+				<td><a href="/WirtualnyDziekanat/user/detail">Profil uzytkownika [${user.userName}] </a></td>
+				<td><a href="/WirtualnyDziekanat/user/logout">Wyloguj</a></td>
+			</tr>
+		</table>
 	</div>
 
 	<div align="center">

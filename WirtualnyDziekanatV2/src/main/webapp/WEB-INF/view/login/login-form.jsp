@@ -13,18 +13,22 @@
 <body>
 
 	<div align="right">
-		<a href="/WirtualnyDziekanat/">Strona glowna </a> 
-		<a href="detail">Profil uzytkownika [${user.userName}] </a>
-		<a href="logout">Wyloguj</a>
+		<table>
+			<tr>
+				<td><a href="/WirtualnyDziekanat/">Strona glowna </a></td>
+				<td><a href="/WirtualnyDziekanat/user/detail">Profil uzytkownika [${user.userName}] </a></td>
+				<td><a href="/WirtualnyDziekanat/user/logout">Wyloguj</a></td>
+			</tr>
+		</table>
 	</div>
-
+	
 	<div align="center">
 
 		<h2>Logowanie</h2>
 
 		<form:form action="loginproceed" method="POST" modelAttribute="loginDetail">
 
-			${msg}
+			<h3>${msg}</h3>
 
 			<table>
 				<tbody>

@@ -8,4 +8,6 @@ public interface LoginDAO {
 	
 	public User getUser(String user);
 
+	boolean checkUser(String user);
+
 }

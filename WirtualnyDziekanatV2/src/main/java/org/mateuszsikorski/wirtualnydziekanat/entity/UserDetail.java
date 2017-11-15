@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,7 +25,7 @@ public class UserDetail {
 	@Column(name="id")
 	private int id;
 	
-	@Email(message = "Prosze podac prawdilowy adres email")
+	//@Email(message = "Prosze podac prawdilowy adres email")
 	@Column(name="email")
 	private String email;
 	
@@ -149,8 +150,7 @@ public class UserDetail {
 	@Override
 	public String toString() {
 		return "UserDetail [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", telephoneNumber=" + telephoneNumber + ", studentDetail=" + studentDetail + ", adminDetail="
-				+ adminDetail + ", teacherDetail=" + teacherDetail + "]";
+				+ ", telephoneNumber=" + telephoneNumber + "]";
 	}
 	
 }

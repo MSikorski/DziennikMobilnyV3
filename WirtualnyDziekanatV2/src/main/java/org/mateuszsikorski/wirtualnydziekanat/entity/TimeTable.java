@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "time_table")
@@ -33,6 +34,7 @@ public class TimeTable {
 			CascadeType.REFRESH })
 	private List<Subject> subjects;
 
+	@Transient
 	private Subject[][] subjectTime;
 
 	private void processTimeTable() {

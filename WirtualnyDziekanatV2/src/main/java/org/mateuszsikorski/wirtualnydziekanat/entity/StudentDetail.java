@@ -48,6 +48,10 @@ public class StudentDetail {
 		this.indexNumber = indexNumber;
 	}
 	
+	public StudentDetail(UserDetail userDetail){
+		this.userDetail = userDetail;
+	}
+	
 	public StudentDetail() {}
 
 	public String getIndexNumber() {

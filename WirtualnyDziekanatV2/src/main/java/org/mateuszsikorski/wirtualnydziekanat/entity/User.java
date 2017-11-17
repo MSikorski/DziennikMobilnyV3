@@ -35,8 +35,7 @@ public class User {
 	@Column(name="password")
 	private String password;
 	
-	@OneToOne(cascade={CascadeType.REMOVE, CascadeType.MERGE,
-			CascadeType.DETACH, CascadeType.REFRESH})
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="user_detail_id")
 	private UserDetail userDetail;
 	

@@ -1,4 +1,4 @@
-package org.mateuszsikorski.wirtualnydziekanat.service;
+package org.mateuszsikorski.wirtualnydziekanat.service.interfaces;
 
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
 import org.mateuszsikorski.wirtualnydziekanat.model.LoginDetail;

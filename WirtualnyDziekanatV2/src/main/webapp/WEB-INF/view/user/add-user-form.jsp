@@ -28,8 +28,7 @@
 
 		<form action="save" method="POST">
 
-			<!-- need to pass id -->
-			<form:hidden path="user.id" />
+		${msg}
 
 			<table>
 				<tbody>

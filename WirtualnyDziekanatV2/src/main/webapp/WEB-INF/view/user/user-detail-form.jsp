@@ -72,13 +72,13 @@
 				
 				<tr>
 					<td><label>Uprawnienia studenta </label>
-					<form:checkbox path="studentPrivagle"/></td>
+					<form:checkbox path="privagles.studentPrivagles"/></td>
 					
 					<td><label>Uprawnienia nauczyciela </label>
-					<form:checkbox path="teacherPrivagle"/></td>
+					<form:checkbox path="privagles.teacherPrivagles"/></td>
 					
 					<td><label>Uprawnienia administratora </label>
-					<form:checkbox path="adminPrivagle"/></td>
+					<form:checkbox path="privagles.adminPrivagles"/></td>
 					
 				</tr>
 

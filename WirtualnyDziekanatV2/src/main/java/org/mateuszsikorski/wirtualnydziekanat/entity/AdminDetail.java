@@ -27,6 +27,9 @@ public class AdminDetail {
 	@OneToOne(mappedBy="adminDetail", cascade=CascadeType.ALL)
 	private UserDetail userDetail;
 	
+	public AdminDetail() {
+	}
+	
 	public AdminDetail(UserDetail userDetail) {
 		this.userDetail = userDetail;
 	}

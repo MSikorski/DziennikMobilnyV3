@@ -7,6 +7,7 @@ import org.mateuszsikorski.wirtualnydziekanat.dao.LoginDAOImpl;
 import org.mateuszsikorski.wirtualnydziekanat.dao.UserDAO;
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
 import org.mateuszsikorski.wirtualnydziekanat.model.LoginDetail;
+import org.mateuszsikorski.wirtualnydziekanat.service.interfaces.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;

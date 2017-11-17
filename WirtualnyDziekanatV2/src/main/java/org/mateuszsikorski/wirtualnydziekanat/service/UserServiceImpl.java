@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.mateuszsikorski.wirtualnydziekanat.dao.UserDAO;
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
 import org.mateuszsikorski.wirtualnydziekanat.entity.UserDetail;
+import org.mateuszsikorski.wirtualnydziekanat.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;

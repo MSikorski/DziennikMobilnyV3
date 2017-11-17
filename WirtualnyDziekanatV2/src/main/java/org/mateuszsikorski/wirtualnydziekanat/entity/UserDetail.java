@@ -41,8 +41,7 @@ public class UserDetail {
 	@Column(name="telephone_number")
 	private String telephoneNumber;
 	
-	@OneToOne(cascade={CascadeType.REMOVE, CascadeType.MERGE,
-			CascadeType.DETACH, CascadeType.REFRESH}, mappedBy="userDetail")
+	@OneToOne(cascade=CascadeType.ALL, mappedBy="userDetail")
 	private User user;
 	
 	@OneToOne(cascade=CascadeType.ALL)

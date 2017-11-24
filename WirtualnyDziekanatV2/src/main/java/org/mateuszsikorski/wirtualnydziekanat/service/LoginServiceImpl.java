@@ -2,9 +2,9 @@ package org.mateuszsikorski.wirtualnydziekanat.service;
 
 import javax.transaction.Transactional;
 
-import org.mateuszsikorski.wirtualnydziekanat.dao.LoginDAO;
 import org.mateuszsikorski.wirtualnydziekanat.dao.LoginDAOImpl;
-import org.mateuszsikorski.wirtualnydziekanat.dao.UserDAO;
+import org.mateuszsikorski.wirtualnydziekanat.dao.interfaces.LoginDAO;
+import org.mateuszsikorski.wirtualnydziekanat.dao.interfaces.UserDAO;
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
 import org.mateuszsikorski.wirtualnydziekanat.model.LoginDetail;
 import org.mateuszsikorski.wirtualnydziekanat.service.interfaces.LoginService;
@@ -18,18 +18,13 @@ public class LoginServiceImpl implements LoginService{
 	@Autowired
 	private LoginDAO loginDAO;
 	
-	@Autowired
-	public void setLoginDAO(LoginDAO loginDAO) {
-		this.loginDAO = loginDAO;
-	}
-	
 	private User temp;
 	
 	@Transactional
 	@Override
 	public boolean validate(LoginDetail loginDetail) {
 		
-		System.out.println("Validating with loginDetail: " + loginDetail + " loginDAO " + loginDAO);
+		System.out.println("Validating with loginDetail: " + loginDetail);
 		
 		String dbPassHash;
 		

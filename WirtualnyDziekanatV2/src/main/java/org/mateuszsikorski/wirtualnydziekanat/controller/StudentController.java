@@ -1,6 +1,9 @@
 package org.mateuszsikorski.wirtualnydziekanat.controller;
 
+import java.util.List;
+
 import org.mateuszsikorski.wirtualnydziekanat.entity.StudentDetail;
+import org.mateuszsikorski.wirtualnydziekanat.entity.Subject;
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
 import org.mateuszsikorski.wirtualnydziekanat.service.interfaces.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +54,31 @@ public class StudentController {
 		ModelAndView mav = new ModelAndView();
 	
 		mav.setViewName("/student/student-detail-form");
+		
+		return mav;
+	}
+	
+	@GetMapping("/marks")
+	public ModelAndView studentMarks(@ModelAttribute("user") User user) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/student/student-marks-form");
+		
+		return mav;
+	}
+	
+	@GetMapping("/subjects")
+	public ModelAndView studentSubjects(@ModelAttribute("user") User user) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/student/student-subjects-form");
+	
+		List<Subject> subjects = user.getUserDetail().getStudentDetail().
+									getStudentGroup().getTimeTable().getSubjects();
+		
+		mav.addObject("subjects", subjects);
 		
 		return mav;
 	}

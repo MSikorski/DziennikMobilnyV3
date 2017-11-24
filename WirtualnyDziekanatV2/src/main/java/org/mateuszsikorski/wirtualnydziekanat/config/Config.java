@@ -26,6 +26,15 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @ComponentScan(basePackages = "org.mateuszsikorski.wirtualnydziekanat.*")
 @EnableTransactionManagement
 public class Config extends WebMvcConfigurerAdapter{
+	
+	private final String dbUrl = "jdbc:mysql://localhost:3306/dziennikmobilny?useSSL=false";
+	private final String dbUser = "springstudent";
+	private final String dbPass = "springstudent";
+	/*
+	private final String dbUrl = "jdbc:mysql://localhost:3306/dziennikmobilny?useSSL=false";
+	private final String dbUser = "springstudent";
+	private final String dbPass = "springstudent";
+	*/
 
 	@Bean
 	public ViewResolver viewResolver() {
@@ -46,9 +55,9 @@ public class Config extends WebMvcConfigurerAdapter{
 
 		try {
 			myDataSource.setDriverClass("com.mysql.jdbc.Driver");
-			myDataSource.setJdbcUrl("jdbc:mysql://localhost:3306/dziennikmobilny?useSSL=false");
-			myDataSource.setUser("springstudent");
-			myDataSource.setPassword("springstudent");
+			myDataSource.setJdbcUrl(dbUrl);
+			myDataSource.setUser(dbUser);
+			myDataSource.setPassword(dbPass);
 
 			// setting up connection pool
 			myDataSource.setMinPoolSize(5);

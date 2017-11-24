@@ -1,4 +1,4 @@
-package org.mateuszsikorski.wirtualnydziekanat.dao;
+package org.mateuszsikorski.wirtualnydziekanat.dao.interfaces;
 
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
 import org.mateuszsikorski.wirtualnydziekanat.entity.UserDetail;

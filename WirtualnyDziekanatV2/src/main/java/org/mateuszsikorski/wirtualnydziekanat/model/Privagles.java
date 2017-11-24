@@ -4,6 +4,7 @@ import org.mateuszsikorski.wirtualnydziekanat.entity.AdminDetail;
 import org.mateuszsikorski.wirtualnydziekanat.entity.StudentDetail;
 import org.mateuszsikorski.wirtualnydziekanat.entity.TeacherDetail;
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
+import org.mateuszsikorski.wirtualnydziekanat.entity.UserDetail;
 
 public class Privagles {
 
@@ -17,24 +18,24 @@ public class Privagles {
 		adminPrivagles = true;
 	}
 	
-	public User Validate(User user) {
+	public UserDetail Validate(UserDetail userDetail) {
 		
-		if(studentPrivagles && user.getUserDetail().getStudentDetail() == null)
-			user.getUserDetail().setStudentDetail(new StudentDetail(user.getUserDetail()));
-		else if(!studentPrivagles && !(user.getUserDetail().getStudentDetail() == null))
-			user.getUserDetail().setStudentDetail(null);
+		if(studentPrivagles && userDetail.getStudentDetail() == null)
+			userDetail.setStudentDetail(new StudentDetail(userDetail));
+		else if(!studentPrivagles && !(userDetail.getStudentDetail() == null))
+			userDetail.setStudentDetail(null);
 		
-		if(teacherPrivagles && user.getUserDetail().getTeacherDetail() == null)
-			user.getUserDetail().setTeacherDetail(new TeacherDetail(user.getUserDetail()));
-		else if(!teacherPrivagles && !(user.getUserDetail().getTeacherDetail() == null))
-			user.getUserDetail().setTeacherDetail(null);
+		if(teacherPrivagles && userDetail.getTeacherDetail() == null)
+			userDetail.setTeacherDetail(new TeacherDetail(userDetail));
+		else if(!teacherPrivagles && !(userDetail.getTeacherDetail() == null))
+			userDetail.setTeacherDetail(null);
 		
-		if(adminPrivagles && user.getUserDetail().getAdminDetail() == null)
-			user.getUserDetail().setAdminDetail(new AdminDetail(user.getUserDetail()));
-		else if(!adminPrivagles && !(user.getUserDetail().getAdminDetail() == null))
-			user.getUserDetail().setAdminDetail(null);
+		if(adminPrivagles && userDetail.getAdminDetail() == null)
+			userDetail.setAdminDetail(new AdminDetail(userDetail));
+		else if(!adminPrivagles && !(userDetail.getAdminDetail() == null))
+			userDetail.setAdminDetail(null);
 		
-		return user;
+		return userDetail;
 	}
 
 	public boolean isStudentPrivagles() {

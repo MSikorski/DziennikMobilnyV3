@@ -2,7 +2,7 @@ package org.mateuszsikorski.wirtualnydziekanat.service;
 
 import javax.transaction.Transactional;
 
-import org.mateuszsikorski.wirtualnydziekanat.dao.UserDAO;
+import org.mateuszsikorski.wirtualnydziekanat.dao.interfaces.UserDAO;
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
 import org.mateuszsikorski.wirtualnydziekanat.entity.UserDetail;
 import org.mateuszsikorski.wirtualnydziekanat.service.interfaces.UserService;

@@ -36,7 +36,7 @@
 				</tr>
 
 				<tr>
-					<td><a href="/WirtualnyDziekanat/student/marks">Oceny</a></td>
+					<td><a href="/WirtualnyDziekanat/student/subjects">Przedmioty</a></td>
 				</tr>
 
 				<tr>

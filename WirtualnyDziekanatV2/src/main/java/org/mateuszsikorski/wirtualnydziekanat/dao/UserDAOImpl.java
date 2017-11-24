@@ -2,6 +2,7 @@ package org.mateuszsikorski.wirtualnydziekanat.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.mateuszsikorski.wirtualnydziekanat.dao.interfaces.UserDAO;
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
 import org.mateuszsikorski.wirtualnydziekanat.entity.UserDetail;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.mateuszsikorski.wirtualnydziekanat.dao.interfaces.LoginDAO;
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

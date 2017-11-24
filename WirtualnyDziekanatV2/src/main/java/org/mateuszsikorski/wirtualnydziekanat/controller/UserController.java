@@ -204,14 +204,10 @@ public class UserController {
 			System.out.println("\n-----\n/user/saveDetail Incorrect data recieved");
 			msg = "Niepoprawnie wprowadzone dane";
 		} else {
-			User tempUser = user;
-			tempUser = privagles.Validate(tempUser);
-			user.getUserDetail().setAdminDetail(tempUser.getUserDetail().getAdminDetail());
-			user.getUserDetail().setTeacherDetail(tempUser.getUserDetail().getTeacherDetail());
-			user.getUserDetail().setStudentDetail(tempUser.getUserDetail().getStudentDetail());
+			user.setUserDetail(privagles.Validate(user.getUserDetail()));
 			
 			System.out.println("\n-----\n/user/saveDetail Saving the user in db: " + user.getUserDetail());
-			//userService.saveUserDetail(user.getUserDetail());
+			
 			userService.saveUser(user);
 			msg = "Poprawnie zapisano dane";
 		}

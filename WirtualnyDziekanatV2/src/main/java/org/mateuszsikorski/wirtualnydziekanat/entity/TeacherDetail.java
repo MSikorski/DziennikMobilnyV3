@@ -25,9 +25,12 @@ public class TeacherDetail {
 	@Column(name="id")
 	private int id;
 	
+	@Column(name="test")
+	private int test;
+	
 	@OneToOne(mappedBy="teacherDetail",
 			cascade= {CascadeType.DETACH, CascadeType.MERGE,
-					CascadeType.PERSIST, CascadeType.REFRESH})
+					CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
 	private UserDetail userDetail;
 	
 	@OneToMany(mappedBy="teacherDetail", fetch=FetchType.LAZY,
@@ -42,6 +45,14 @@ public class TeacherDetail {
 				joinColumns = @JoinColumn(name = "teacher_detail_id"), 
 				inverseJoinColumns = @JoinColumn(name = "subject_id"))
 	private List<Subject> subjectsList;
+	
+	public int getTest() {
+		return test;
+	}
+
+	public void setTest(int test) {
+		this.test = test;
+	}
 
 	public TeacherDetail(UserDetail userDetail) {
 		this.userDetail = userDetail;

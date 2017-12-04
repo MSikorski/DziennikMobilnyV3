@@ -20,17 +20,15 @@
 	</div>
 
 	<div align="left">
-		
-		<a href="/WirtualnyDziekanat/user/create">Utworz uzytkownika</a> <br>
-		<a href="/WirtualnyDziekanat/user/login">Logowanie</a> <br>
-		<a href="/WirtualnyDziekanat/user/detail">Szczegoly profilu uzytkownika</a> <br>
-		<a href="/WirtualnyDziekanat/student/detail">Profil studenta</a> <br>
-		<a href="/WirtualnyDziekanat/author">O Autorze</a> <br> 
-		<a href="/WirtualnyDziekanat/project">O projekcie</a> <br> 
-		
-		 <br>
-		
-
+		<ul>
+		<li><a href="/WirtualnyDziekanat/user/create">Utworz uzytkownika</a></li> 
+		<li><a href="/WirtualnyDziekanat/user/login">Logowanie</a></li>
+		<li><a href="/WirtualnyDziekanat/user/detail">Szczegoly profilu uzytkownika</a></li>
+		<li><a href="/WirtualnyDziekanat/student/detail">Profil studenta</a></li>
+		<li><a href="/WirtualnyDziekanat/admin/panel">Panel Administratora</a></li>
+		<li><a href="/WirtualnyDziekanat/author">O Autorze</a></li>
+		<li><a href="/WirtualnyDziekanat/project">O projekcie</a></li> 
+		</ul>	
 	</div>
 
 </body>

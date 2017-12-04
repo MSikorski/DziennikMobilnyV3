@@ -7,12 +7,15 @@
 <spring:url value="/resources/css/infoboxes.css" var="infoBoxes" />
 <link href="${infoBoxes}" rel="stylesheet" />
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Rejestracja noowego uzytkownika</title>
+<spring:url value="/resources/js/userNamePanel.js" var="userNameScript" />
+<script type="text/javascript" src="${userNameScript}"></script>
+
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> -->
+<title>Rejestracja nowego uzytkownika</title>
 </head>
 <body>
 
-	<div align="right">
+	<div id="userPanel" align="right">
 		<table>
 			<tr>
 				<td><a href="/WirtualnyDziekanat/">Strona glowna </a></td>

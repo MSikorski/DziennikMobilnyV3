@@ -10,12 +10,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="student_group")
@@ -30,7 +28,7 @@ public class StudentGroup {
 	private String name;
 	
 	@OneToMany(mappedBy="studentGroup",
-			fetch=FetchType.LAZY,
+			fetch=FetchType.EAGER,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH})
 	private List <StudentDetail> studentDetailList;
@@ -39,8 +37,12 @@ public class StudentGroup {
 			cascade= {CascadeType.DETACH, CascadeType.MERGE,
 					CascadeType.PERSIST, CascadeType.REFRESH})
 	private TimeTable timeTable;
+	
+	@Transient
+	private int members;
 
 	public StudentGroup() { 
+		timeTable = new TimeTable(this);
 	}
 	
 	public StudentGroup(String name){
@@ -73,6 +75,11 @@ public class StudentGroup {
 
 	public int getId() {
 		return id;
+	}
+	
+	public int getMembers() {
+		members = studentDetailList.size();
+		return members;
 	}
 
 	@Override

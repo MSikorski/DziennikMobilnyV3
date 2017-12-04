@@ -19,8 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/student")
 public class StudentController {
 
-	//@Autowired
-	//StudentService studentService;
+	@Autowired
+	StudentService studentService;
 	
 	@ModelAttribute("user")
 	public User getUser() {
@@ -32,25 +32,15 @@ public class StudentController {
 			return false;
 		else return true;
 	}
-	
-	public ModelAndView noPrivagles() {
 		
-		ModelAndView mav = new ModelAndView();
-		
-		String msg = "Brak dostepu do tej funkcjonalnosci";
-		
-		mav.addObject("msg", msg);
-		mav.setViewName("/actionfailed");
-		
-		return mav;
-	}
-	
 	@GetMapping("/detail")
 	public ModelAndView studentDetailPage(@ModelAttribute("user") User user) {
 		
-		if(!checkPrivagles(user))
-			return noPrivagles();
-
+		if(!checkPrivagles(user)) {
+			String msg = "Brak dostepu do tej funkcjonalnosci";
+			return HomePageController.actionFailed(msg);
+		}
+		
 		ModelAndView mav = new ModelAndView();
 	
 		mav.setViewName("/student/student-detail-form");

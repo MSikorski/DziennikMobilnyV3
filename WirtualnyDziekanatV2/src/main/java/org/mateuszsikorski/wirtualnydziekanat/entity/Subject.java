@@ -57,16 +57,6 @@ public class Subject {
 		this.name = name;
 	}
 
-	public Subject(String name, String time) {
-		this.name = name;
-		this.time = time;
-	}
-
-	public Subject(String name, String time, String detail) {
-		this.name = name;
-		this.detail = detail;
-	}
-
 	public String getName() {
 		return name;
 	}

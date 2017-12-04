@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/")
 @SessionAttributes("user")
-public class homePageController {
+public class HomePageController {
 	
 	@ModelAttribute("user")
 	public User getUser() {
@@ -31,6 +31,13 @@ public class homePageController {
 		mav.setViewName("index");
 		mav.addObject("user", user);
 		
+		return mav;
+	}
+	
+	public static ModelAndView actionFailed(String msg) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.setViewName("/actionfailed");
 		return mav;
 	}
 	

@@ -41,7 +41,7 @@ public class UserController {
 	public ModelAndView loginPage(@ModelAttribute("user") User user) {
 
 		if (!(user.getUserName() == "Niezarejestrowany"))
-			return actionFailed("Uzytkownik jest juz zalogowany");
+			return HomePageController.actionFailed("Uzytkownik jest juz zalogowany");
 
 		ModelAndView mav = new ModelAndView();
 
@@ -101,8 +101,7 @@ public class UserController {
 
 		if (!(user.getUserName() == "Niezarejestrowany")) {
 			msg = "Uzytkownik jest juz zarejestrowany";
-			mav.addObject("msg", msg);
-			mav.setViewName("/actionfailed");
+			HomePageController.actionFailed(msg);
 			System.out.println("\n-----\n/user/create Recived request from registered user: " + user);
 		} else {
 			user = new User();
@@ -160,9 +159,7 @@ public class UserController {
 
 		if (user.getUserName() == "Niezarejestrowany") {
 			String msg = "Uzytkownik nie jest zarejestrowany";
-			mav.addObject("msg", msg);
-			mav.setViewName("/actionfailed");
-			return mav;
+			return HomePageController.actionFailed(msg);
 		}
 
 		if ((user.getUserDetail().getAdminDetail() == null) && (user.getUserDetail().getStudentDetail() == null)
@@ -220,13 +217,6 @@ public class UserController {
 	@GetMapping("/saveDetail")
 	public String redirectFromPost3() {
 		return "forward:/user/detail";
-	}
-
-	private ModelAndView actionFailed(String msg) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg", msg);
-		mav.setViewName("/actionfailed");
-		return mav;
 	}
 
 }

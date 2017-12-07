@@ -7,6 +7,9 @@
 <spring:url value="/resources/css/infoboxes.css" var="infoBoxes" />
 <link href="${infoBoxes}" rel="stylesheet" />
 
+<spring:url value="/resources/javascript/userDetailPanel.js" var="userDetailPanelJs" />
+<link href="${userDetailPanelJs}" />
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Rejestracja noowego uzytkownika</title>
 </head>
@@ -16,7 +19,10 @@
 		<table>
 			<tr>
 				<td><a href="/WirtualnyDziekanat/">Strona glowna </a></td>
-				<td><a href="/WirtualnyDziekanat/user/detail">Profil uzytkownika [${user.userName}] </a></td>
+				<div id="userDetailPanelName">
+					<td><a href="/WirtualnyDziekanat/user/detail">
+					Profil uzytkownika [${user.userName}] </a></td>
+				</div>
 				<td><a href="/WirtualnyDziekanat/user/logout">Wyloguj</a></td>
 			</tr>
 		</table>

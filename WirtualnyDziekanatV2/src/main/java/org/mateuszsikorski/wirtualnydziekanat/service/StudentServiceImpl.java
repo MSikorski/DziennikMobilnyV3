@@ -21,7 +21,10 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	@Transactional
 	public List<Subject> getSubjects(User user) {
-		// TODO Auto-generated method stub
+		int groupId = user.getUserDetail().getStudentDetail()
+							.getStudentGroup().getId();
+		//StudentDAO.getSubjectList(groupId);
+		
 		return null;
 	}
 	

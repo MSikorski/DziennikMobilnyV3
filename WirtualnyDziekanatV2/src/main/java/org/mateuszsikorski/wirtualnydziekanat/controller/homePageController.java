@@ -34,4 +34,11 @@ public class homePageController {
 		return mav;
 	}
 	
+	public static ModelAndView actionFailed(String msg) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.setViewName("/actionfailed");
+		return mav;
+	}
+	
 }

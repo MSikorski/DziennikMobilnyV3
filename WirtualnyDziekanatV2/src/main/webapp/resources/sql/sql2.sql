@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS `teacher_detail`;
 
 CREATE TABLE `teacher_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `test` int(11) DEFAULT 10,
    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 

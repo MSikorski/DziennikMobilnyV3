@@ -15,6 +15,31 @@
 	</div>
 </div>
 
+<table>
+				<tr>
+					<th>Przedmiot</th>
+					<th>Szczegoly przedmiotu</th>
+				</tr>
+				
+				<!-- loop over and print out subjects -->
+				<c:forEach var="tempSubject" items="${subjects}">
+					
+				<!-- construct and update link with subjectid -->
+				<c:url var="subjectLink" value="/student/showSubject">
+					<c:param name="subjectId" value="${tempSubject.id}" />
+				</c:url>
+				
+				<tr>
+					<td> ${tempSubject.name} </td>
+					
+					<!--  Display the subject detail link -->
+					<td> <a href="${subjectLink}">Update</a></td>
+				</tr>
+				</c:forEach>
+				
+			</table>
+
+
 
 </body>
 </html>

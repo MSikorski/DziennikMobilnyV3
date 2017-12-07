@@ -41,7 +41,7 @@ public class UserController {
 	public ModelAndView loginPage(@ModelAttribute("user") User user) {
 
 		if (!(user.getUserName() == "Niezarejestrowany"))
-			return actionFailed("Uzytkownik jest juz zalogowany");
+			return homePageController.actionFailed("Uzytkownik jest juz zalogowany");
 
 		ModelAndView mav = new ModelAndView();
 
@@ -220,13 +220,6 @@ public class UserController {
 	@GetMapping("/saveDetail")
 	public String redirectFromPost3() {
 		return "forward:/user/detail";
-	}
-
-	private ModelAndView actionFailed(String msg) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg", msg);
-		mav.setViewName("/actionfailed");
-		return mav;
 	}
 
 }

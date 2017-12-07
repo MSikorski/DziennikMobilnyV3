@@ -26,14 +26,14 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @ComponentScan(basePackages = "org.mateuszsikorski.wirtualnydziekanat.*")
 @EnableTransactionManagement
 public class Config extends WebMvcConfigurerAdapter{
-	
+	///*
 	private final String dbUrl = "jdbc:mysql://localhost:3306/dziennikmobilny?useSSL=false";
-	private final String dbUser = "springstudent";
-	private final String dbPass = "springstudent";
+	private final String dbUser = "root";
+	private final String dbPass = "root";
 	/*
-	private final String dbUrl = "jdbc:mysql://localhost:3306/dziennikmobilny?useSSL=false";
-	private final String dbUser = "springstudent";
-	private final String dbPass = "springstudent";
+	private final String dbUrl = "jdbc:mysql://localhost:3306/mateuszs_WirtualnyDziekanat?useSSL=false";
+	private final String dbUser = "mateuszs_root";
+	private final String dbPass = "polki1234";
 	*/
 
 	@Bean

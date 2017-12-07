@@ -1,4 +1,4 @@
-package org.mateuszsikorski.wirtualnydziekanat.controller;
+	package org.mateuszsikorski.wirtualnydziekanat.controller;
 
 import java.util.List;
 
@@ -77,7 +77,11 @@ public class StudentController {
 	
 		List<Subject> subjects = user.getUserDetail().getStudentDetail().
 									getStudentGroup().getTimeTable().getSubjects();
-		
+		if(subjects == null) {
+			return homePageController.actionFailed("Obecnie do studenta" +
+											"nie sa przypisane zadne przedmioty," + 
+											"skontantuj sie z administratorem");
+		} else
 		mav.addObject("subjects", subjects);
 		
 		return mav;

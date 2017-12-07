@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,11 +31,13 @@ public class StudentDetail {
 	private String specialization;
 	
 	@OneToOne(mappedBy="studentDetail",
+			fetch = FetchType.EAGER,
 			cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
 					CascadeType.REFRESH})
 	private UserDetail userDetail;
 	
 	@OneToMany(mappedBy="studentDetail",
+			fetch = FetchType.LAZY,
 			cascade = {CascadeType.REFRESH, CascadeType.MERGE, 
 			CascadeType.PERSIST, CascadeType.REFRESH})
 	private List <Mark> marks;
@@ -70,11 +73,11 @@ public class StudentDetail {
 		this.specialization = specialization;
 	}
 
-	public UserDetail getUser() {
+	public UserDetail getUserDetail() {
 		return userDetail;
 	}
 
-	public void setUser(UserDetail userDetail) {
+	public void setUserDetail(UserDetail userDetail) {
 		this.userDetail = userDetail;
 	}
 

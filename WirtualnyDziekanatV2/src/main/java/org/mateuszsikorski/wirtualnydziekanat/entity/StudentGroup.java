@@ -15,6 +15,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.mateuszsikorski.wirtualnydziekanat.service.interfaces.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
 @Table(name="student_group")
 public class StudentGroup {
@@ -28,7 +31,7 @@ public class StudentGroup {
 	private String name;
 	
 	@OneToMany(mappedBy="studentGroup",
-			fetch=FetchType.EAGER,
+			fetch=FetchType.LAZY,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.DETACH, CascadeType.REFRESH})
 	private List <StudentDetail> studentDetailList;
@@ -37,9 +40,6 @@ public class StudentGroup {
 			cascade= {CascadeType.DETACH, CascadeType.MERGE,
 					CascadeType.PERSIST, CascadeType.REFRESH})
 	private TimeTable timeTable;
-	
-	@Transient
-	private int members;
 
 	public StudentGroup() { 
 		timeTable = new TimeTable(this);
@@ -75,11 +75,6 @@ public class StudentGroup {
 
 	public int getId() {
 		return id;
-	}
-	
-	public int getMembers() {
-		members = studentDetailList.size();
-		return members;
 	}
 
 	@Override

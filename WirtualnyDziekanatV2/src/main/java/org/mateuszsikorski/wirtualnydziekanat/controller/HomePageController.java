@@ -24,14 +24,13 @@ public class HomePageController {
 	}
 	
 	@GetMapping("/")
-	public ModelAndView homePage(@ModelAttribute("user") User user) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		mav.setViewName("index");
-		mav.addObject("user", user);
-		
-		return mav;
+	public String homePage(@ModelAttribute("user") User user) {
+		return "index";
+	}
+	
+	@GetMapping("/project")
+	public String projectPage(@ModelAttribute("user") User user) {
+		return "project";
 	}
 	
 	public static ModelAndView actionFailed(String msg) {

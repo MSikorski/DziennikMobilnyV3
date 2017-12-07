@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Grupy studenckie</title>
+<title>Zarzadzanie przedmiotem</title>
 </head>
 <body>
 
@@ -38,44 +40,56 @@
 	</tr>
 </table>
 
+<center><h2>Zarzadzanie przedmiotem ${subject.name}</h2></center>
 
-<center><h2>Grupy Studenckie</h2>
-<h3>${msg}</h3>
-</center>
-
-<h3>Lista grup</h3>
-
-<input type="button" value="Stworz grupe" onclick="window.location.href='createStudentGroup';">
-
-<br><br>
-
-
+<h4>Lista grup w ktorych wystepuje przedmiot</h4>
 <table>
 	<tr>
 		<th>Nazwa grupy</th>
-		<th>Id grupy</th>
-		<th>Zarzadzaj</th>
-		<th>Plan zajec</th>
+		<th>Id</th>
+		<th>Usun przedmiot z grupy</th>
 	</tr>
 	
-	<c:forEach var="tempStudentGroup" items="${studentGroupList}">
+	<c:forEach var="tempStudentGroup" items="${studentGroupListWithSubject}">
 					
-		<c:url var="updateLink" value="/admin/updateStudentGroup">
-		<c:param name="studentGroupId" value="${tempStudentGroup.id}" />
+		<c:url var="removeLink" value="/admin/updateSubjectRemoveGroup">
+			<c:param name="removedGroupId" value="${tempStudentGroup.id}" />
+			<c:param name="subjectId" value="${subject.id}" />
 		</c:url>
-		
-		<c:url var="timeTableLink" value="/admin/showTimeTable">
-		<c:param name="timeTableId" value="${tempStudentGroup.timeTable.id}" />
-		</c:url>
-				
+						
 		<tr>
 			<td>${tempStudentGroup.name}</td>
 			<td>${tempStudentGroup.id}</td>
-			<td><a href="${updateLink}">Link</a></td>
-			<td><a href="${timeTableLink}">Link</a></td>
+			<td><a href="${removeLink}">Usun</a></td>
 		</tr>
+				
 	</c:forEach>
+</table>
 
+<br><br>
+
+<h4>Lista grup w ktorych nie wystepuje przedmiot</h4>
+<table>
+	<tr>
+		<th>Nazwa grupy</th>
+		<th>Id</th>
+		<th>Dodaj przedmiot do grupy</th>
+	</tr>
+	
+	<c:forEach var="tempStudentGroup" items="${studentGroupListWithoutSubject}">
+					
+		<c:url var="addLink" value="/admin/updateSubjectAddGroup">
+			<c:param name="addedGroupId" value="${tempStudentGroup.id}" />
+			<c:param name="subjectId" value="${subject.id}" />
+		</c:url>
+						
+		<tr>
+			<td>${tempStudentGroup.name}</td>
+			<td>${tempStudentGroup.id}</td>
+			<td><a href="${addLink}">Dodaj</a></td>
+		</tr>
+				
+	</c:forEach>
 </table>
 
 

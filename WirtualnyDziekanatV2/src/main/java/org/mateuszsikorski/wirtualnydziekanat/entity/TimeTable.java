@@ -26,12 +26,14 @@ public class TimeTable {
 	@Column(name = "id")
 	private int id;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, 
+			fetch = FetchType.LAZY)
 	@JoinColumn(name = "student_group_id")
 	private StudentGroup studentGroup;
 
 	@OneToMany(mappedBy = "timeTable", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
-			CascadeType.REFRESH })
+			CascadeType.REFRESH },
+			fetch=FetchType.LAZY)
 	private List<Subject> subjects;
 
 	@Transient
@@ -89,13 +91,4 @@ public class TimeTable {
 				+ Arrays.toString(subjectTime) + "]";
 	}
 
-	public void addSubject(Subject tempSubject) {
-		if (subjects == null) {
-			subjects = new ArrayList<>();
-		}
-
-		subjects.add(tempSubject);
-
-		tempSubject.setTimeTable(this);
-	}
 }

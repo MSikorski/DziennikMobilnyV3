@@ -3,15 +3,14 @@ package org.mateuszsikorski.wirtualnydziekanat.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
@@ -44,15 +43,18 @@ public class UserDetail {
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="userDetail")
 	private User user;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,
+			fetch = FetchType.EAGER)
 	@JoinColumn(name="student_detail_id")
 	private StudentDetail studentDetail;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,
+			fetch=FetchType.EAGER)
 	@JoinColumn(name="admin_detail_id")
 	private AdminDetail adminDetail;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,
+			fetch=FetchType.EAGER)
 	@JoinColumn(name="teacher_detail_id")
 	private TeacherDetail teacherDetail;
 	

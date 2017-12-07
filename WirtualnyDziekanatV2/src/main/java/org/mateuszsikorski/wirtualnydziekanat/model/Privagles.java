@@ -3,7 +3,6 @@ package org.mateuszsikorski.wirtualnydziekanat.model;
 import org.mateuszsikorski.wirtualnydziekanat.entity.AdminDetail;
 import org.mateuszsikorski.wirtualnydziekanat.entity.StudentDetail;
 import org.mateuszsikorski.wirtualnydziekanat.entity.TeacherDetail;
-import org.mateuszsikorski.wirtualnydziekanat.entity.User;
 import org.mateuszsikorski.wirtualnydziekanat.entity.UserDetail;
 
 public class Privagles {
@@ -11,6 +10,8 @@ public class Privagles {
 	private boolean studentPrivagles;
 	private boolean teacherPrivagles;
 	private boolean adminPrivagles;
+	
+	private int id;
 	
 	public Privagles() {
 		studentPrivagles = true;
@@ -36,6 +37,14 @@ public class Privagles {
 			userDetail.setAdminDetail(null);
 		
 		return userDetail;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public boolean isStudentPrivagles() {

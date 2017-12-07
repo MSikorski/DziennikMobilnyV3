@@ -7,6 +7,9 @@
 <spring:url value="/resources/css/infoboxes.css" var="infoBoxes" />
 <link href="${infoBoxes}" rel="stylesheet" />
 
+<spring:url value="http://code.jquery.com/jquery-2.2.4.min.js" var="jQueryScript" />
+<script type="text/javascript" src="${jQueryScript}"></script>
+
 <spring:url value="/resources/js/userNamePanel.js" var="userNameScript" />
 <script type="text/javascript" src="${userNameScript}"></script>
 
@@ -15,15 +18,15 @@
 </head>
 <body>
 
-	<div id="userPanel" align="right">
-		<table>
-			<tr>
-				<td><a href="/WirtualnyDziekanat/">Strona glowna </a></td>
-				<td><a href="/WirtualnyDziekanat/user/detail">Profil uzytkownika [${user.userName}] </a></td>
-				<td><a href="/WirtualnyDziekanat/user/logout">Wyloguj</a></td>
-			</tr>
-		</table>
-	</div>
+<div id="userPanel" align="right">
+	<table>
+		<tr>
+			<td><a href="/WirtualnyDziekanat/">Strona glowna</a></td>
+			<td><a href="/WirtualnyDziekanat/user/detail" id="userName">Profil uzytkownika ${user.userName}</a></td>
+			<td><a href="/WirtualnyDziekanat/user/logout" id="logout">Wyloguj</a></td>
+		</tr>
+	</table>
+</div>
 
 	<div align="center">
 

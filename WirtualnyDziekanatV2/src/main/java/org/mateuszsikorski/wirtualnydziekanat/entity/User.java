@@ -3,6 +3,7 @@ package org.mateuszsikorski.wirtualnydziekanat.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,11 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
@@ -29,13 +27,14 @@ public class User {
 	private int id;
 	
 	@Size(min = 5, max = 15, message = "Nazwa uzytkownika powinna zawierac od 5 do 15 znakow")
-	@Column(name="user_name", unique = true)
+	@Column(name="user_name")
 	private String userName;
 	
 	@Column(name="password")
 	private String password;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL,
+			fetch=FetchType.EAGER)
 	@JoinColumn(name="user_detail_id")
 	private UserDetail userDetail;
 	
@@ -43,7 +42,24 @@ public class User {
 	@Size(min = 5, max = 25, message = "Haslo powinno zawierac od 5 do 25 znakow")
 	private String tempPass;
 	
-	public User() {
+	public void pasteProporties(User tempUser) {
+		
+		UserDetail tempUserDetail = tempUser.getUserDetail();
+		
+		if(userDetail.getFirstName() != tempUserDetail.getFirstName())
+			userDetail.setFirstName(tempUserDetail.getFirstName());
+		
+		if(userDetail.getLastName() != tempUserDetail.getLastName())
+			userDetail.setLastName(tempUserDetail.getLastName());
+		
+		if(userDetail.getEmail() != tempUserDetail.getEmail())
+			userDetail.setEmail(tempUserDetail.getEmail());
+		
+		if(userDetail.getTelephoneNumber() != tempUserDetail.getTelephoneNumber())
+			userDetail.setTelephoneNumber(tempUserDetail.getTelephoneNumber());
+	}
+	
+	public User() { 
 		this.userName = "Niezarejestrowany";
 		this.userDetail = new UserDetail(this);
 	}

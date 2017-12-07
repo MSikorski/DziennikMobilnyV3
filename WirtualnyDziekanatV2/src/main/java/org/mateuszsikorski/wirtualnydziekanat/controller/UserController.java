@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
-import org.mateuszsikorski.wirtualnydziekanat.entity.UserDetail;
 import org.mateuszsikorski.wirtualnydziekanat.model.LoginDetail;
 import org.mateuszsikorski.wirtualnydziekanat.model.Privagles;
 import org.mateuszsikorski.wirtualnydziekanat.service.interfaces.LoginService;
@@ -48,7 +47,7 @@ public class UserController {
 		LoginDetail loginDetail = new LoginDetail();
 
 		mav.addObject("loginDetail", loginDetail);
-		//mav.addObject("msg", msg);
+
 		mav.setViewName("/login/login-form");
 
 		return mav;
@@ -130,7 +129,7 @@ public class UserController {
 			//userService.saveUserDetail(user.getUserDetail());
 			try {
 				System.out.println("\n-----\n/user/save/ Saving the user in db: " + user);
-				userService.saveUser(user);
+				userService.saveUserFirstTime(user);
 			} catch (Exception e) {
 				msg = "Nazwa uzytkownika jest juz wykorzystana";
 				mav.addObject("msg", msg);
@@ -156,10 +155,9 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 
 		Privagles privagles = new Privagles();
-
+		
 		if (user.getUserName() == "Niezarejestrowany") {
-			String msg = "Uzytkownik nie jest zarejestrowany";
-			return HomePageController.actionFailed(msg);
+			return HomePageController.actionFailed("Uzytkownik nie jest zarejestrowany");
 		}
 
 		if ((user.getUserDetail().getAdminDetail() == null) && (user.getUserDetail().getStudentDetail() == null)

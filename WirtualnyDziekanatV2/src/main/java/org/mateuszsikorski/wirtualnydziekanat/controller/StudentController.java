@@ -2,7 +2,6 @@ package org.mateuszsikorski.wirtualnydziekanat.controller;
 
 import java.util.List;
 
-import org.mateuszsikorski.wirtualnydziekanat.entity.StudentDetail;
 import org.mateuszsikorski.wirtualnydziekanat.entity.Subject;
 import org.mateuszsikorski.wirtualnydziekanat.entity.User;
 import org.mateuszsikorski.wirtualnydziekanat.service.interfaces.StudentService;

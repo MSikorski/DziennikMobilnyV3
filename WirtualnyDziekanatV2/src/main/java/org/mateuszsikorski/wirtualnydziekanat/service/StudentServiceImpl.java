@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mateuszsikorski.wirtualnydziekanat.dao.interfaces.StudentDAO;
 import org.mateuszsikorski.wirtualnydziekanat.entity.Mark;
+import org.mateuszsikorski.wirtualnydziekanat.entity.StudentDetail;
 import org.mateuszsikorski.wirtualnydziekanat.entity.StudentGroup;
 import org.mateuszsikorski.wirtualnydziekanat.entity.Subject;
 import org.mateuszsikorski.wirtualnydziekanat.entity.TimeTable;
@@ -21,8 +22,8 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Override
 	@Transactional
-	public List<Subject> getSubjects(User user) {
-		return studentDAO.getSubjectList(user);
+	public List<Subject> getUserSubjects(User user) {
+		return studentDAO.getUserSubjects(user);
 	}
 	
 	@Override
@@ -55,6 +56,66 @@ public class StudentServiceImpl implements StudentService {
 	@Transactional
 	public void saveTimeTable(TimeTable timeTable) {
 		studentDAO.saveTimeTable(timeTable);
+	}
+
+	@Override
+	@Transactional
+	public StudentGroup getStudentGroup(int id) {
+		return studentDAO.getStudentGroup(id);
+	}
+
+	@Override
+	@Transactional
+	public List<StudentDetail> getStudentListWithoutGroup() {
+		return studentDAO.getStudentListWithoutGroup();
+	}
+
+	@Override
+	@Transactional
+	public void saveStudent(StudentDetail studentDetail) {
+		studentDAO.saveStudent(studentDetail);
+	}
+
+	@Override
+	@Transactional
+	public List<Subject> getSubjectList() {
+		return studentDAO.getSubjectList();
+	}
+
+	@Override
+	@Transactional
+	public void saveSubject(Subject subject) {
+		studentDAO.saveSubject(subject);
+	}
+
+	@Override
+	@Transactional
+	public Subject getSubject(int subjectId) {
+		return studentDAO.getSubject(subjectId);
+	}
+
+	@Override
+	@Transactional
+	public List<StudentGroup> getStudentGroupListWithSubject(int subjectId) {
+		return studentDAO.getStudentGroupListWithSubject(subjectId);
+	}
+
+	@Override
+	@Transactional
+	public List<StudentGroup> getStudentGroupListWithoutSubject(int subjectId) {
+		return studentDAO.getStudentGroupListWithoutSubject(subjectId);
+	}
+
+	@Override
+	@Transactional
+	public TimeTable getTimeTableByStudentGroupId(int studentGroupId) {
+		return studentDAO.getTimeTableByStudentGroupId(studentGroupId);
+	}
+
+	@Override
+	@Transactional
+	public List<StudentDetail> getStudentListWithGroupId(int groupId) {
+		return studentDAO.getStudentListWithGrupId(groupId);
 	}
 
 }

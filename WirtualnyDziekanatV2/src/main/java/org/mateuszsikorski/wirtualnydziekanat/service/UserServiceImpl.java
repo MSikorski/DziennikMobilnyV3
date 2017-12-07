@@ -1,5 +1,7 @@
 package org.mateuszsikorski.wirtualnydziekanat.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.mateuszsikorski.wirtualnydziekanat.dao.interfaces.UserDAO;
@@ -18,9 +20,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void saveUser(User theUser) {
+	public void saveUserFirstTime(User theUser) {
 		String temp = theUser.getTempPass();
 		theUser.setPassword(BCrypt.hashpw(temp, BCrypt.gensalt()));
+		userDAO.saveUser(theUser);
+	}
+	
+	@Override
+	@Transactional
+	public void saveUser(User theUser) {
+		
 		userDAO.saveUser(theUser);
 	}
 
@@ -29,6 +38,18 @@ public class UserServiceImpl implements UserService {
 	public void saveUserDetail(UserDetail theUserDetail) {
 
 		userDAO.saveUserDetail(theUserDetail);
+	}
+
+	@Override
+	@Transactional
+	public List<User> getUserList() {
+		return userDAO.getUserList();
+	}
+
+	@Override
+	@Transactional
+	public User getUser(int id) {
+		return userDAO.getUser(id);
 	}
 
 }

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Przedmioty studenta</title>
+<title>Przedmioty</title>
 </head>
 <body>
 
@@ -37,12 +37,39 @@
 	</tr>
 </table>
 
-<div id="wrapper">
-	<div id="header">
-		<h2> Przedmioty studenta</h2>		
-	</div>
-</div>
+<center><h2>Przedmioty</h2>
+<h3>${msg}</h3>
+</center>
 
+<h3>Lista przedmiotow</h3>
+
+<input type="button" value="Stworz przedmiot" onclick="window.location.href='createSubject';">
+
+<br><br>
+
+<table>
+	<tr>
+		<th>Nazwa przedmiotu</th>
+		<th>Id przedmiotu</th>
+		<th>Szczegoly przedmiotu</th>
+		<th>Zarzadzaj</th>
+	</tr>
+	
+	<c:forEach var="tempSubject" items="${subjects}">
+					
+		<c:url var="updateLink" value="/admin/updateSubject">
+		<c:param name="subjectId" value="${tempSubject.id}" />
+		</c:url>
+				
+		<tr>
+			<td>${tempSubject.name}</td>
+			<td>${tempSubject.id}</td>
+			<td>${tempSubject.detail}</td>
+			<td><a href="${updateLink}">Link</a></td>
+		</tr>
+	</c:forEach>
+
+</table>
 
 </body>
 </html>

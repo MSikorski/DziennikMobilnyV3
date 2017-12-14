@@ -65,6 +65,8 @@
 <li>Spring AOP - logi czynnosci uzytkownikow</li>
 </ul>
 
+<a href="https://github.com/MSikorski/DziennikMobilnyV3/tree/master/WirtualnyDziekanatV2">Link do repozytorium na githubie z calym kodem zrodlowym projektu</a>
+
 <h3>Struktura bazy danych</h3>
 <img src="resources/img/DBScheme.png" />
 
